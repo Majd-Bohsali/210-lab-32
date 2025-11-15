@@ -4,19 +4,29 @@
 #include <ctime> 
 #include <cstdlib>
 #include <deque> 
+#include <array>
 #include "Car.h"
 using namespace std; 
 
-void printDeque(deque<Car>& boothLine);
+const int LANE_COUNT = 4; 
+
+void printLane(deque<Car>& boothLine);
+void printAllLanes(array<deque<Car>, LANE_COUNT>& plazza);
 
 int main() {
     srand(time(0)); 
-    deque<Car> boothLine; 
+    array<deque<Car>, LANE_COUNT> plazza; 
 
-    Car car1, car2; 
-    boothLine.push_back(car1); 
-    boothLine.push_back(car2);
+    //deque<Car> boothLine; 
 
+    Car car1, car2, car3, car4; 
+    
+    plazza[0].push_back(car1);
+    plazza[1].push_back(car2);
+    plazza[2].push_back(car3);
+    plazza[2].push_back(car4);
+    printAllLanes(plazza);
+    /*
     cout << "Inital queue:" << endl; 
     printDeque(boothLine); 
     cout << endl;
@@ -41,11 +51,18 @@ int main() {
         cout << endl;
         timeCount++; 
     }
-
+    */
     return 0; 
 }
 
-void printDeque(deque<Car>& boothLine) { 
+void printAllLanes(array<deque<Car>, LANE_COUNT>& plazza) { 
+    for(int i = 0; i < LANE_COUNT; i++) { 
+        cout << "Lane: " << i + 1 << endl; 
+        printLane(plazza[i]);
+    }
+}
+
+void printLane(deque<Car>& boothLine) { 
     if(boothLine.empty()) { 
         cout << "    Empty"; 
     } else { 
