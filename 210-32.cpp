@@ -27,19 +27,30 @@ int main() {
     printAllLanes(plazza); 
     cout << endl; 
 
-    for(int timeCount = 9; timeCount < 20; timeCount++) { 
-        cout << "Time: " << timeCount; 
+    for(int timeCount = 0; timeCount < 20; timeCount++) { 
+        cout << "Time: " << timeCount + 1 << endl; 
 
         for(int i = 0; i < LANE_COUNT; i++) { 
             int prop = rand() % 100 + 1; 
+            cout << "Lane: " << i + 1 << " "; 
+            if(prop <= 50) { 
+                if(!plazza[i].empty()) { 
+                    cout << "Paid: ";
+                    plazza[i].front().print(); 
+                    plazza[i].pop_front(); 
+                } else {
+                    cout << "Empty"; 
+                }
+            } else { 
+                cout << "Joined: "; 
+                plazza[i].push_back(Car());
+                plazza[i].back().print();
+            }
         }
+        cout << "Queue" << endl; 
+        printAllLanes(plazza); 
+        cout << endl;
     }
-
-
-
-    cout << "Queue" << endl; 
-    printAllLanes(plazza); 
-    cout << endl;
     return 0; 
 }
 
