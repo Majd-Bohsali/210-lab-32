@@ -26,33 +26,20 @@ int main() {
     cout << "Inital queue: " << endl; 
     printAllLanes(plazza); 
     cout << endl; 
-    
-    /*
-    cout << "Inital queue:" << endl; 
-    printDeque(boothLine); 
-    cout << endl;
-   
-    int timeCount = 1; 
-    while(!boothLine.empty()) { 
-        int prop = rand() % 100 + 1; 
-        cout << "Time: " << timeCount << " Operation: "; 
-        if(prop <= 55) { 
-            cout << "Car paid: "; 
-            boothLine.front().print(); 
-            boothLine.pop_front();
-        } else {
-            Car newCar; 
-            boothLine.push_back(newCar);
-            cout << "Joined lane: ";
-            boothLine.back().print();  
-        }
 
-        cout << "Queue" << endl; 
-        printDeque(boothLine); 
-        cout << endl;
-        timeCount++; 
+    for(int timeCount = 9; timeCount < 20; timeCount++) { 
+        cout << "Time: " << timeCount; 
+
+        for(int i = 0; i < LANE_COUNT; i++) { 
+            int prop = rand() % 100 + 1; 
+        }
     }
-    */
+
+
+
+    cout << "Queue" << endl; 
+    printAllLanes(plazza); 
+    cout << endl;
     return 0; 
 }
 
