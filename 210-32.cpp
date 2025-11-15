@@ -8,7 +8,7 @@
 #include "Car.h"
 using namespace std; 
 
-const int LANE_COUNT = 4; 
+const int LANE_COUNT = 4, EMPTY_LEAVE = 50, LEAVE_PROP = 46, ENTER_PROP = 39; 
 
 void printLane(deque<Car>& boothLine);
 void printAllLanes(array<deque<Car>, LANE_COUNT>& plazza);
@@ -33,21 +33,38 @@ int main() {
         for(int i = 0; i < LANE_COUNT; i++) { 
             int prop = rand() % 100 + 1; 
             cout << "Lane: " << i + 1 << " "; 
-            if(prop <= 50) { 
-                if(!plazza[i].empty()) { 
-                    cout << "Paid: ";
-                    plazza[i].front().print(); 
-                    plazza[i].pop_front(); 
-                } else {
-                    cout << "Empty"; 
+            if(plazza[i].empty()) { 
+                if(prop <= EMPTY_LEAVE) { 
+                    if(!plazza[i].empty()) { 
+                        cout << "Paid: ";
+                        plazza[i].front().print(); 
+                        plazza[i].pop_front(); 
+                    } else {
+                        cout << "Empty"; 
+                    }
+                } else if (prop <= 39) { 
+                    cout << "Joined: "; 
+                    plazza[i].push_back(Car());
+                    plazza[i].back().print();
                 }
-            } else { 
-                cout << "Joined: "; 
-                plazza[i].push_back(Car());
-                plazza[i].back().print();
+            } else {
+                if(prop <= LEAVE_PROP) { 
+                    if(!plazza[i].empty()) { 
+                        cout << "Paid: ";
+                        plazza[i].front().print(); 
+                        plazza[i].pop_front(); 
+                    } else {
+                        cout << "Empty"; 
+                    }
+                } else if (prop <= ENTER_PROP) { 
+                    cout << "Joined: "; 
+                    plazza[i].push_back(Car());
+                    plazza[i].back().print();
+                } else { 
+
+                }
             }
         }
-        cout << "Queue" << endl; 
         printAllLanes(plazza); 
         cout << endl;
     }
@@ -56,7 +73,7 @@ int main() {
 
 void printAllLanes(array<deque<Car>, LANE_COUNT>& plazza) { 
     for(int i = 0; i < LANE_COUNT; i++) { 
-        cout << "Lane: " << i + 1 << endl; 
+        cout << "Lane: " << i + 1 << " Queue:" << endl; 
         printLane(plazza[i]);
     }
 }
