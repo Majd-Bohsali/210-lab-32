@@ -13,7 +13,11 @@ int main() {
     boothLine.push_back(car1); 
     boothLine.push_back(car2);
 
-    cout << "Inital queue:"; 
+    cout << "Inital queue:" << endl; 
+    for(int i =0; i < boothLine.size(); i++) { 
+        cout << "    "; 
+        boothLine[i].print(); 
+    }
 
     return 0; 
 }
