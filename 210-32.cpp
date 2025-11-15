@@ -7,10 +7,10 @@
 #include "Car.h"
 using namespace std; 
 
-void printDeque(deque<Car> boothLine);
+void printDeque(deque<Car>& boothLine);
 
 int main() {
-    srand(0); 
+    srand(time(0)); 
     deque<Car> boothLine; 
 
     Car car1, car2; 
@@ -45,7 +45,7 @@ int main() {
     return 0; 
 }
 
-void printDeque(deque<Car> boothLine) { 
+void printDeque(deque<Car>& boothLine) { 
     if(boothLine.empty()) { 
         cout << "    Empty"; 
     } else { 
