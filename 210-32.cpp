@@ -22,7 +22,7 @@ int main() {
         plazza[i].push_back(Car());
         plazza[i].push_back(Car()); 
     }
-
+   
     cout << "Inital queue: " << endl; 
     printAllLanes(plazza); 
     cout << endl; 
