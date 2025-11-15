@@ -20,7 +20,7 @@ int main() {
     cout << "Inital queue:" << endl; 
     printDeque(boothLine); 
     cout << endl;
-
+   
     int timeCount = 1; 
     while(!boothLine.empty()) { 
         int prop = rand() % 100 + 1; 
