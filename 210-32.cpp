@@ -54,7 +54,7 @@ int main() {
                     cout << "Joined: "; 
                     plazza[i].push_back(Car());
                     plazza[i].back().print();
-                } else { 
+                } else { // left over 15% for switching lanes
                     Car tempCar = plazza[i].back();
                     plazza[i].pop_back(); 
 
