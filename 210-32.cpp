@@ -23,8 +23,11 @@ int main() {
     
     plazza[0].push_back(car1);
     plazza[1].push_back(car2);
+    plazza[1].push_back(car4);
     plazza[2].push_back(car3);
     plazza[2].push_back(car4);
+    plazza[2].push_back(car2);
+    plazza[1].pop_back();
     printAllLanes(plazza);
     /*
     cout << "Inital queue:" << endl; 
