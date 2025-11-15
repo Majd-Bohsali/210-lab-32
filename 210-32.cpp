@@ -8,7 +8,7 @@
 #include "Car.h"
 using namespace std; 
 
-const int LANE_COUNT = 4, EMPTY_LEAVE = 50, LEAVE_PROP = 46, ENTER_PROP = 39; 
+const int LANE_COUNT = 4, EMPTY_JOIN = 50, LEAVE_PROP = 46, ENTER_PROP = 39; 
 
 void printLane(deque<Car>& boothLine);
 void printAllLanes(array<deque<Car>, LANE_COUNT>& plazza);
@@ -34,18 +34,12 @@ int main() {
             int prop = rand() % 100 + 1; 
             cout << "Lane: " << i + 1 << " "; 
             if(plazza[i].empty()) { 
-                if(prop <= EMPTY_LEAVE) { 
-                    if(!plazza[i].empty()) { 
-                        cout << "Paid: ";
-                        plazza[i].front().print(); 
-                        plazza[i].pop_front(); 
-                    } else {
-                        cout << "Empty"; 
-                    }
-                } else if (prop <= 39) { 
+                if (prop <= EMPTY_JOIN) { 
                     cout << "Joined: "; 
                     plazza[i].push_back(Car());
                     plazza[i].back().print();
+                } else {
+                    cout << "Empty";
                 }
             } else {
                 if(prop <= LEAVE_PROP) { 
@@ -56,12 +50,19 @@ int main() {
                     } else {
                         cout << "Empty"; 
                     }
-                } else if (prop <= ENTER_PROP) { 
+                } else if (prop <= ENTER_PROP + LEAVE_PROP) { 
                     cout << "Joined: "; 
                     plazza[i].push_back(Car());
                     plazza[i].back().print();
                 } else { 
+                    Car tempCar = plazza[i].back();
+                    plazza[i].pop_back(); 
 
+                    int newLane = (i + rand() % (LANE_COUNT-1) + 1) % LANE_COUNT; // gets a step amout of 1 to 3 and 
+                                                                                //takes the modulus to keep within lane count
+                    plazza[newLane].push_back(tempCar); 
+                    cout << "Switched: "; 
+                    tempCar.print();
                 }
             }
         }
