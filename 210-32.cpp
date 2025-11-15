@@ -17,18 +17,16 @@ int main() {
     srand(time(0)); 
     array<deque<Car>, LANE_COUNT> plazza; 
 
-    //deque<Car> boothLine; 
+    for (int i = 0; i < LANE_COUNT; i++)
+    {
+        plazza[i].push_back(Car());
+        plazza[i].push_back(Car()); 
+    }
 
-    Car car1, car2, car3, car4; 
+    cout << "Inital queue: " << endl; 
+    printAllLanes(plazza); 
+    cout << endl; 
     
-    plazza[0].push_back(car1);
-    plazza[1].push_back(car2);
-    plazza[1].push_back(car4);
-    plazza[2].push_back(car3);
-    plazza[2].push_back(car4);
-    plazza[2].push_back(car2);
-    plazza[1].pop_back();
-    printAllLanes(plazza);
     /*
     cout << "Inital queue:" << endl; 
     printDeque(boothLine); 
